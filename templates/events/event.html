@@ -1,0 +1,39 @@
+{%extends 'base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}Event - {% endblock %}
+
+{% block style %}
+
+{% endblock %}
+{% block Calendar_Support %}
+{#        <script src="{% static 'js/jquery.min.js' %}"></script>#}
+
+        <link href="{% static 'css/bootstrap.css'%}" rel="stylesheet">
+        <script src="{% static 'js/bootstrap.min.js'%}"></script>
+
+    {{ form.media }}
+{% endblock %}
+ {%  block content %}
+
+         <div class="row">
+            <div class="col-sm-8" >
+
+                <form method="POST" action=""> {% csrf_token %}
+
+                    {{ form | crispy }}
+
+                    {% if evID %}
+                    <input class='btn btn-default' onclick="window.location.href='{% url "event_srf_pdf" uuid=evID %}'" value='Shipping Request Form' />
+                    <input class='btn btn-default' onclick="window.location.href='{% url "event_packing_pdf" uuid=evID %}'" value='Packing Sheet' />
+                    {% endif %}
+
+                    <input class='btn btn-default btn-primary' type="submit" value="Submit">
+
+                </form>
+
+            </div>
+        </div>
+
+ {% endblock %}
