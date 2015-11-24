@@ -22,7 +22,6 @@ from atlas.views import *
 urlpatterns = [
     url(r'^$', 'atlas.views.home', name='home'),
 
-
 ###################
 
     url(r'^events/calendar/all_events/',
